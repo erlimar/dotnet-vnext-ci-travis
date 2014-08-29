@@ -9,7 +9,7 @@ before_install:
         - sudo apt-get install -qq wget unzip > /dev/null
         # Baixando e instalando a Key para pacotes Xamarin do apt-get
         - sudo wget http://download.mono-project.com/repo/xamarin.gpg > /dev/null
-        - sudo apt-key add xamarin.gpg > /dev/nul
+        - sudo apt-key add xamarin.gpg > /dev/null
         # Adicionando o repositorio com pacotes do Mono atual disponibilizado pela Xamarin
         # ao apt-get e atualizando a lista para instalacao
         - sudo add-apt-repository "deb http://download.mono-project.com/repo/debian wheezy main" > /dev/null
