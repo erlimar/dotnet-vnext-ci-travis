@@ -1,27 +1,23 @@
 language: c
 
 before_install:
-        #- uname -a
+        # Identificando a distribuicao Linux para fins de LOG
         - cat /etc/*release | head
-        #- ls
-        - sudo apt-get update -qq
-        - sudo apt-get install -qq wget unzip
-        - sudo wget http://download.mono-project.com/repo/xamarin.gpg
-        #- ls
-        - sudo apt-key add xamarin.gpg
-        #- sudo echo "deb http://download.mono-project.com/repo/debian wheezy main" > /etc/apt/sources.list.d/mono-xamarin.list
-        - sudo add-apt-repository "deb http://download.mono-project.com/repo/debian wheezy main"
-        #- sudo ls /etc/apt
-        - sudo apt-get update -qq
-        #- mono --version
-        - sudo apt-get install mono-devel
-        - mono --version
-        #- sudo apt-get install mono-complete
-        #- sudo apt-get install mono
-        - sudo apt-cache search mono
-        #- mono --version
+        # Utilitarios basicos para permitir o download e descompactacao de pacotes
+        # necessarios para a preparacao do ambiente
+        - sudo apt-get update -qq > /dev/null
+        - sudo apt-get install -qq wget unzip > /dev/null
+        # Baixando e instalando a Key para pacotes Xamarin do apt-get
+        - sudo wget http://download.mono-project.com/repo/xamarin.gpg > /dev/null
+        - sudo apt-key add xamarin.gpg > /dev/nul
+        # Adicionando o repositorio com pacotes do Mono atual disponibilizado pela Xamarin
+        # ao apt-get e atualizando a lista para instalacao
+        - sudo add-apt-repository "deb http://download.mono-project.com/repo/debian wheezy main" > /dev/null
+        - sudo apt-get update -qq > /dev/null
+        - sudo apt-get install -qq mono-devel > /dev/null
+        # Atualizando os certificados SSL para habilitar as requisicoes HTTPS futuras
         - sudo mozroots --import --sync
 
 script:
-        - echo "Executing..."
+        - echo "Executing on:"
         - mono --version
