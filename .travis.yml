@@ -23,5 +23,5 @@ before_install:
         kvm install 1.0.0-alpha3
 
 script:
-        - echo "Executing on:"
+        - echo "Executing on mono version:"
         - mono --version
