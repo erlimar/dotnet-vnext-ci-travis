@@ -17,8 +17,9 @@ before_install:
         - sudo apt-get install mono-devel
         - mono --version
         #- sudo apt-get install mono-complete
-        - sudo apt-get install mono
-        - mono --version
+        #- sudo apt-get install mono
+        - sudo apt-cache search mono
+        #- mono --version
         - sudo mozroots --import --sync
 
 script:
