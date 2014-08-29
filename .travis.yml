@@ -17,6 +17,11 @@ before_install:
         - sudo apt-get install -qq mono-devel > /dev/null
         # Atualizando os certificados SSL para habilitar as requisicoes HTTPS futuras
         - sudo mozroots --import --sync >/dev/null
+        - sudo certmgr -ssl -m "https://myget.org"
+        - sudo certmgr -ssl -m "https://geotrust.com"
+        - sudo certmgr -ssl -m "https://rapidssl.com"
+        - sudo certmgr -ssl -m "https://www.geotrust.com"
+        - sudo certmgr -ssl -m "https://www.rapidssl.com"
         - sudo certmgr -ssl -m "https://www.myget.org"
         # Instalando o KVM (K Version Manager)
         - curl "https://raw.githubusercontent.com/aspnet/Home/master/kvminstall.sh" | sh && source ~/.kre/kvm/kvm.sh
