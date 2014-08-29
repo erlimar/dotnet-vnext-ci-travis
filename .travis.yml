@@ -21,12 +21,12 @@ before_install:
         #
         # Instalacao via GITHUB
         #
-        - sudo apt-get -y install wget curl unzip build-essential autoconf automake bison flex libtool gettext gdb mono-devel
+        - sudo apt-get -y install wget curl unzip git-core build-essential autoconf libtool gettext libgdiplus libgtk2.0-0 xsltproc
         - mono --version
         - git clone --depth=1 http://github.com/mono/mono
         - cd mono
-        - ./autogen.sh --prefix=/usr --with-mcs-docs=no
-        #- make get-monolite-latest
+        - ./autogen.sh --prefix=/usr/local --with-mcs-docs=no
+        - make get-monolite-latest
         - make
         - sudo make install
         - cd ..
