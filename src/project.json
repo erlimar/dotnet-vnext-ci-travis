@@ -3,7 +3,11 @@
   "authors": ["Erlimar Silva Campos"],
   "description": "Projeto de exemplo para teste com CI Travis",
   "dependencies": {
-    "System.Console": "4.0.0.0"
+    "System.Console": "4.0.0.0",
+    "Xunit.KRunner": "1.0.0-*"
+  },
+  "commands": {
+    "test": "Xunit.KRunner"
   },
   "frameworks": {
     "net45": {},

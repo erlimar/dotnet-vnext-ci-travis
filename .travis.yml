@@ -5,10 +5,14 @@ before_install:
         - cat /etc/*release | head
         # Utilitarios basicos para permitir o download, descompactacao e compilacao
         # de pacotes necessarios para a preparacao do ambiente
+        #
+        # Parte baseado em: https://github.com/akoeplinger/vagrant-mono-aspnetvnext/blob/master/Vagrantfile
+        #
         - sudo apt-get -y install wget curl unzip git-core build-essential autoconf libtool gettext libgdiplus libgtk2.0-0 xsltproc > /dev/null
         # Baixando e compilando a ultima versao do mono via GitHub
         - git clone --depth=1 http://github.com/mono/mono > /dev/null
         - cd mono > /dev/null
+        - git checkout mono-3.8.0-branch
         - ./autogen.sh --prefix=/usr/local --with-mcs-docs=no > /dev/null
         - make get-monolite-latest > /dev/null
         - make > /dev/null
