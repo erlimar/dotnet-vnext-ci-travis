@@ -44,9 +44,7 @@ script:
         - echo "Executing on mono version:"
         - mono --version
         - cd src/ > /dev/null
-        - ls
         - kpm restore --source "https://www.myget.org/F/aspnetmaster/api/v2"
+        - k test
         - k run
         - kpm build
-        - ls
-        - ls bin
