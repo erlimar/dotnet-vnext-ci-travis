@@ -6,7 +6,7 @@ before_install:
         # Utilitarios basicos para permitir o download e descompactacao de pacotes
         # necessarios para a preparacao do ambiente
         - sudo apt-get update -qq > /dev/null
-        - sudo apt-get install -qq wget unzip > /dev/null
+        - sudo apt-get install -qq wget curl unzip > /dev/null
         # Baixando e instalando a Key para pacotes Xamarin do apt-get
         - sudo wget http://download.mono-project.com/repo/xamarin.gpg > /dev/null
         - sudo apt-key add xamarin.gpg > /dev/null
@@ -16,7 +16,11 @@ before_install:
         - sudo apt-get update -qq > /dev/null
         - sudo apt-get install -qq mono-devel > /dev/null
         # Atualizando os certificados SSL para habilitar as requisicoes HTTPS futuras
-        - sudo mozroots --import --sync
+        - sudo mozroots --import --sync >/dev/null
+        # Instalando o KVM (K Version Manager)
+        curl https://raw.githubusercontent.com/aspnet/Home/master/kvminstall.sh | sh && source ~/.kre/kvm/kvm.sh
+        # Instalando o K Runtime Environment (KRE)
+        kvm install 1.0.0-alpha3
 
 script:
         - echo "Executing on:"
