@@ -15,10 +15,8 @@ before_install:
         - sudo add-apt-repository "deb http://download.mono-project.com/repo/debian wheezy main" > /dev/null
         - sudo apt-get update -qq > /dev/null
         - sudo apt-get install -qq mono-devel > /dev/null
-        # Atualizando os certificados SSL para habilitar as requisicoes HTTPS futuras
+        # Instalando/atualizando os certificados SSL para habilitar as requisicoes HTTPS futuras
         - sudo mozroots --import --machine --sync >/dev/null
-        #- yes | sudo certmgr -ssl -m "https://www.geotrust.com"
-        #- yes | sudo certmgr -ssl -m "https://www.rapidssl.com"
         - yes | sudo certmgr -ssl -m "https://www.myget.org"
         # Instalando o KVM (K Version Manager)
         - curl "https://raw.githubusercontent.com/aspnet/Home/master/kvminstall.sh" | sh && source ~/.kre/kvm/kvm.sh
@@ -35,6 +33,7 @@ script:
         - ls
         - kpm help restore
         - kpm restore --source "https://www.myget.org/F/aspnetmaster/api/v2"
+        - k kestrel
         - k run
         - kpm help build
         - kpm build
