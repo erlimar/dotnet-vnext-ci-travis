@@ -21,7 +21,18 @@ before_install:
         - curl "https://raw.githubusercontent.com/aspnet/Home/master/kvminstall.sh" | sh && source ~/.kre/kvm/kvm.sh
         # Instalando o K Runtime Environment (KRE)
         - kvm install 1.0.0-alpha3
+        - kvm list
+        - kvm use 1.0.0-alpha3
+        - kvm list
 
 script:
         - echo "Executing on mono version:"
         - mono --version
+        - cd src/
+        - ls
+        - kpm help restore
+        - kpm restore --source "https://www.myget.org/F/aspnetmaster/api/v2"
+        - k run
+        - kpm help build
+        - kpm build
+        - ls

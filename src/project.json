@@ -1,0 +1,12 @@
+{
+  "version": "0.1-citravis",
+  "authors": ["Erlimar Silva Campos"],
+  "description": "Projeto de exemplo para teste com CI Travis",
+  "dependencies": {
+    "System.Console": "4.0.0.0"
+  },
+  "frameworks": {
+    "net45": {},
+    "k10": {}
+  }
+}
