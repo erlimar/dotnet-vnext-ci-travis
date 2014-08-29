@@ -17,6 +17,7 @@ before_install:
         - sudo apt-get install -qq mono-devel > /dev/null
         # Atualizando os certificados SSL para habilitar as requisicoes HTTPS futuras
         - sudo mozroots --import --sync >/dev/null
+        - sudo certmgr -ssl -m "https://www.myget.org"
         # Instalando o KVM (K Version Manager)
         - curl "https://raw.githubusercontent.com/aspnet/Home/master/kvminstall.sh" | sh && source ~/.kre/kvm/kvm.sh
         # Instalando o K Runtime Environment (KRE)
@@ -31,7 +32,7 @@ script:
         - cd src/
         - ls
         - kpm help restore
-        - kpm restore --source "http://www.myget.org/F/aspnetmaster/api/v2"
+        - kpm restore --source "https://www.myget.org/F/aspnetmaster/api/v2"
         - k run
         - kpm help build
         - kpm build
