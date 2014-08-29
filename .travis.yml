@@ -6,15 +6,33 @@ before_install:
         # Utilitarios basicos para permitir o download e descompactacao de pacotes
         # necessarios para a preparacao do ambiente
         - sudo apt-get update -qq > /dev/null
-        - sudo apt-get install -qq wget curl unzip > /dev/null
+        #- sudo apt-get install -qq wget curl unzip > /dev/null
+        #
+        # Instalacao via APT-GET
+        #
         # Baixando e instalando a Key para pacotes Xamarin do apt-get
-        - sudo wget http://download.mono-project.com/repo/xamarin.gpg > /dev/null
-        - sudo apt-key add xamarin.gpg > /dev/null
+        #- sudo wget http://download.mono-project.com/repo/xamarin.gpg > /dev/null
+        #- sudo apt-key add xamarin.gpg > /dev/null
         # Adicionando o repositorio com pacotes do Mono atual disponibilizado pela Xamarin
         # ao apt-get e atualizando a lista para instalacao
-        - sudo add-apt-repository "deb http://download.mono-project.com/repo/debian wheezy main" > /dev/null
-        - sudo apt-get update -qq > /dev/null
-        - sudo apt-get install -qq mono-devel > /dev/null
+        #- sudo add-apt-repository "deb http://download.mono-project.com/repo/debian wheezy main" > /dev/null
+        #- sudo apt-get update -qq > /dev/null
+        #
+        #
+        # Instalacao via GITHUB
+        #
+        - sudo apt-get -y install wget curl unzip build-essential autoconf automake bison flex libtool gettext gdb mono-devel
+        - mono --version
+        - git clone --depth=1 http://github.com/mono/mono
+        - cd mono
+        - ./autogen.sh --prefix=/usr --with-mcs-docs=no
+        #- make get-monolite-latest
+        - make
+        - sudo make install
+        - cd ..
+        - mono --version
+        #
+        #
         # Instalando/atualizando os certificados SSL para habilitar as requisicoes HTTPS futuras
         - sudo mozroots --import --machine --sync >/dev/null
         - yes | sudo certmgr -ssl -m "https://www.myget.org"
