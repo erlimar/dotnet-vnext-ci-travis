@@ -31,7 +31,7 @@ script:
         - cd src/
         - ls
         - kpm help restore
-        - kpm restore --source "https://www.myget.org/F/aspnetmaster/api/v2"
+        - kpm restore --source "http://www.myget.org/F/aspnetmaster/api/v2"
         - k run
         - kpm help build
         - kpm build
