@@ -3,56 +3,33 @@ language: c
 before_install:
         # Identificando a distribuicao Linux para fins de LOG
         - cat /etc/*release | head
-        # Utilitarios basicos para permitir o download e descompactacao de pacotes
-        # necessarios para a preparacao do ambiente
-        - sudo apt-get update -qq > /dev/null
-        #- sudo apt-get install -qq wget curl unzip > /dev/null
-        #
-        # Instalacao via APT-GET
-        #
-        # Baixando e instalando a Key para pacotes Xamarin do apt-get
-        #- sudo wget http://download.mono-project.com/repo/xamarin.gpg > /dev/null
-        #- sudo apt-key add xamarin.gpg > /dev/null
-        # Adicionando o repositorio com pacotes do Mono atual disponibilizado pela Xamarin
-        # ao apt-get e atualizando a lista para instalacao
-        #- sudo add-apt-repository "deb http://download.mono-project.com/repo/debian wheezy main" > /dev/null
-        #- sudo apt-get update -qq > /dev/null
-        #
-        #
-        # Instalacao via GITHUB
-        #
-        - sudo apt-get -y install wget curl unzip git-core build-essential autoconf libtool gettext libgdiplus libgtk2.0-0 xsltproc
-        #- mono --version
-        - git clone --depth=1 http://github.com/mono/mono
-        - cd mono
-        - ./autogen.sh --prefix=/usr/local --with-mcs-docs=no
-        - make get-monolite-latest
-        - make
-        - sudo make install
-        - cd ..
-        - mono --version
-        #
-        #
+        # Utilitarios basicos para permitir o download, descompactacao e compilacao
+        # de pacotes necessarios para a preparacao do ambiente
+        - sudo apt-get -y install wget curl unzip git-core build-essential autoconf libtool gettext libgdiplus libgtk2.0-0 xsltproc > /dev/null
+        # Baixando e compilando a ultima versao do mono via GitHub
+        - git clone --depth=1 http://github.com/mono/mono > /dev/null
+        - cd mono > /dev/null
+        - ./autogen.sh --prefix=/usr/local --with-mcs-docs=no > /dev/null
+        - make get-monolite-latest > /dev/null
+        - make > /dev/null
+        - sudo make install > /dev/null
+        - cd .. > /dev/null
         # Instalando/atualizando os certificados SSL para habilitar as requisicoes HTTPS futuras
-        - sudo mozroots --import --machine --sync >/dev/null
-        - yes | sudo certmgr -ssl -m "https://www.myget.org"
+        - sudo mozroots --import --machine --sync > /dev/null
+        - yes | sudo certmgr -ssl -m "https://www.myget.org" > /dev/null
         # Instalando o KVM (K Version Manager)
-        - curl "https://raw.githubusercontent.com/aspnet/Home/master/kvminstall.sh" | sh && source ~/.kre/kvm/kvm.sh
+        - curl "https://raw.githubusercontent.com/aspnet/Home/master/kvminstall.sh" | sh && source ~/.kre/kvm/kvm.sh > /dev/null
         # Instalando o K Runtime Environment (KRE)
-        - kvm install 1.0.0-alpha3
-        - kvm list
+        - kvm install 1.0.0-alpha3 > /dev/null
         - kvm use 1.0.0-alpha3
-        - kvm list
 
 script:
         - echo "Executing on mono version:"
         - mono --version
-        - cd src/
+        - cd src/ > /dev/null
         - ls
-        - kpm help restore
         - kpm restore --source "https://www.myget.org/F/aspnetmaster/api/v2"
-        - k kestrel
         - k run
-        - kpm help build
         - kpm build
         - ls
+        - ls bin
