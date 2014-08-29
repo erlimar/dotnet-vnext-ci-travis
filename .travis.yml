@@ -22,7 +22,7 @@ before_install:
         # Instalacao via GITHUB
         #
         - sudo apt-get -y install wget curl unzip git-core build-essential autoconf libtool gettext libgdiplus libgtk2.0-0 xsltproc
-        - mono --version
+        #- mono --version
         - git clone --depth=1 http://github.com/mono/mono
         - cd mono
         - ./autogen.sh --prefix=/usr/local --with-mcs-docs=no
