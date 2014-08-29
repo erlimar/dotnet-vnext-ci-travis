@@ -3,8 +3,9 @@ language: c
 before_install:
         - uname -a
         - cat /etc/*release | head
-        - lsb_release -b
+        - ls
         - sudo wget http://download.mono-project.com/repo/xamarin.gpg
+        - ls
         - sudo apt-key add xamarin.gpg
         #- sudo echo "deb http://download.mono-project.com/repo/debian wheezy main" > /etc/apt/sources.list.d/mono-xamarin.list
         - sudo ls /etc/apt
