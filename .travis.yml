@@ -18,9 +18,9 @@ before_install:
         # Atualizando os certificados SSL para habilitar as requisicoes HTTPS futuras
         - sudo mozroots --import --sync >/dev/null
         # Instalando o KVM (K Version Manager)
-        curl https://raw.githubusercontent.com/aspnet/Home/master/kvminstall.sh | sh && source ~/.kre/kvm/kvm.sh
+        - curl "https://raw.githubusercontent.com/aspnet/Home/master/kvminstall.sh" | sh && source ~/.kre/kvm/kvm.sh
         # Instalando o K Runtime Environment (KRE)
-        kvm install 1.0.0-alpha3
+        - kvm install 1.0.0-alpha3
 
 script:
         - echo "Executing on mono version:"
