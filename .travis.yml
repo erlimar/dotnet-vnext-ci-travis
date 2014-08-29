@@ -12,7 +12,20 @@ before_install:
         # Baixando e compilando a ultima versao do mono via GitHub
         - git clone --depth=1 http://github.com/mono/mono > /dev/null
         - cd mono > /dev/null
-        - git checkout mono-3.8.0-branch
+        #
+        # O CHECKOUT de versao especifica abaixo:
+        #
+        #- git checkout mono-3.8.0-branch
+        #
+        # So funciona se nao usarmos a opcao [--depth=1] no momento de clonar o repositorio.
+        # Porem [--depth=1] faz o clone muito mais rapidamente. Sera necessario escolher
+        # entre esses dois pontos.
+        #
+        # No momento a versao [master] esta funcionando, por isso a escolha de [--depth=1]
+        # prevaleceu ao inves do checkout mono-3.8.0-branch.
+        # Em versoes futuras (caso haja erros na compilacao da ultima versao), pode-se
+        # alterar.
+        #
         - ./autogen.sh --prefix=/usr/local --with-mcs-docs=no > /dev/null
         - make get-monolite-latest > /dev/null
         - make > /dev/null
