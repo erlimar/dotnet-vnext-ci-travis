@@ -5,7 +5,7 @@
 PREFIX=$@
 
 if [ -z $PREFIX ]; then
-  PREFIX=".mono/"
+  PREFIX="/usr/local/"
 fi
 
 # Garantindo permissao de escrita em $PREFIX
