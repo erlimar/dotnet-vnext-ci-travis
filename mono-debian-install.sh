@@ -5,7 +5,7 @@
 PREFIX=$@
 
 if [ -z $PREFIX ]; then
-  PREFIX="~/.mono/"
+  PREFIX=".mono/"
 fi
 
 # Garantindo permissao de escrita em $PREFIX
