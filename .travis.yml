@@ -1,61 +1,18 @@
 language: c
 
 before_install:
-    #
-    # Teste 01 >> Bem sucedido
-    # ------------------------
-    #
-    ## Identificando a distribuicao Linux para fins de LOG
-    #- cat /etc/*release | head
-    ## Utilitarios basicos para permitir o download, descompactacao e compilacao
-    ## de pacotes necessarios para a preparacao do ambiente
-    ##
-    ## Parte baseado em: https://github.com/akoeplinger/vagrant-mono-aspnetvnext/blob/master/Vagrantfile
-    ##
-    #- sudo apt-get -y install wget curl unzip git-core build-essential autoconf libtool gettext libgdiplus libgtk2.0-0 xsltproc > /dev/null
-    ## Baixando e compilando a ultima versao do mono via GitHub
-    #- git clone --depth=1 http://github.com/mono/mono > /dev/null
-    #- cd mono > /dev/null
-    ##
-    ## O CHECKOUT de versao especifica abaixo:
-    ##
-    ##- git checkout mono-3.8.0-branch
-    ##
-    ## So funciona se nao usarmos a opcao [--depth=1] no momento de clonar o repositorio.
-    ## Porem [--depth=1] faz o clone muito mais rapidamente. Sera necessario escolher
-    ## entre esses dois pontos.
-    ##
-    ## No momento a versao [master] esta funcionando, por isso a escolha de [--depth=1]
-    ## prevaleceu ao inves do checkout mono-3.8.0-branch.
-    ## Em versoes futuras (caso haja erros na compilacao da ultima versao), pode-se
-    ## alterar.
-    ##
-    #- ./autogen.sh --prefix=/usr/local --with-mcs-docs=no > /dev/null
-    #- make get-monolite-latest > /dev/null
-    #- make > /dev/null
-    #- sudo make install > /dev/null
-    #- cd .. > /dev/null
-    ## Instalando/atualizando os certificados SSL para habilitar as requisicoes HTTPS futuras
-    #- sudo mozroots --import --machine --sync > /dev/null
-    #- yes | sudo certmgr -ssl -m "https://www.myget.org" > /dev/null
-    ## Instalando o KVM (K Version Manager)
-    #- curl "https://raw.githubusercontent.com/aspnet/Home/master/kvminstall.sh" | sh && source ~/.kre/kvm/kvm.sh > /dev/null
-    ## Instalando o K Runtime Environment (KRE)
-    #- kvm install 1.0.0-alpha3 > /dev/null
-    #- kvm use 1.0.0-alpha3
-    #
-    # Teste 02 >> Em andamento
-    # ------------------------
-    #
     # Identificando a distribuicao Linux para fins de LOG
     - cat /etc/*release | head
-    - chmod +x ./mono-debian-install.sh
-    - ./mono-debian-install.sh
-    # Instalando/atualizando os certificados SSL para habilitar as requisicoes HTTPS futuras
-    - sudo mozroots --import --machine --sync
-    - yes | sudo certmgr -ssl -m "https://www.myget.org"
+    # Instalando o Mono
+    - chmod +x ./mono-debian-install.sh > /dev/null
+    - ./mono-debian-install.sh > /dev/null
     # Instalando o KVM (K Version Manager)
-    - curl "https://raw.githubusercontent.com/aspnet/Home/master/kvminstall.sh" | sh && source ~/.kre/kvm/kvm.sh
+    #- curl "https://raw.githubusercontent.com/aspnet/Home/master/kvminstall.sh" | sh && source ~/.kre/kvm/kvm.sh
+    - wget "https://raw.githubusercontent.com/aspnet/Home/master/kvminstall.sh"
+    - chmod +x ./kvminstall.sh
+    - ./kvminstall.sh
+    - chmod +x ~/.kre/kvm/kvm.sh
+    - ~/.kre/kvm/kvm.sh
     # Instalando o K Runtime Environment (KRE)
     - kvm install 1.0.0-alpha3
     - kvm use 1.0.0-alpha3

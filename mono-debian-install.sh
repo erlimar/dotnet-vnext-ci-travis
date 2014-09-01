@@ -1,26 +1,27 @@
 #!/bin/bash
 
-# Instalador do Mono em sistemas Debian
-
-PREFIX=$@
-
-if [ -z $PREFIX ]; then
-  PREFIX="/usr/local"
-fi
-
-# Garantindo permissao de escrita em $PREFIX
-#sudo mkdir $PREFIX
-#sudo chown -R `whoami` $PREFIX
-
-# Garantindo que os pacotes necessarios estejam instalados
-sudo apt-get install git autoconf libtool automake build-essential gettext #mono-devel
-
-# Clonando, compilando e instalando o Mono em $PREFIX
+PREFIX="/usr/local"
 PATH=$PREFIX/bin:$PATH
-git clone https://github.com/mono/mono.git --branch mono-3.8.0-branch --depth 1
 
-cd mono
-./autogen.sh --prefix=$PREFIX --with-mcs-docs=no
-make get-monolite-latest
-make
-sudo make install
+sudo apt-get install wget git autoconf libtool automake build-essential gettext > /dev/null
+
+git clone git://github.com/mono/mono.git --branch mono-3.8.0-branch --depth 1 > /dev/null
+
+cd mono > /dev/null
+./autogen.sh --prefix=$PREFIX \
+	--with-mcs-docs=no \
+	--with-xammac=no \
+	--with-monotouch=no \
+	--with-monodroid=no \
+	--with-profile2=no \
+	--with-profile4=no \
+	--with-profile4_5=yes \
+	> /dev/null
+
+make get-monolite-latest > /dev/null
+make > /dev/null
+sudo make install > /dev/null
+
+# Instalando/atualizando os certificados SSL para habilitar as requisicoes HTTPS futuras
+sudo mozroots --import --machine --sync > /dev/null
+yes | sudo certmgr -ssl -m "https://www.myget.org" > /dev/null
