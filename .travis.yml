@@ -4,7 +4,7 @@ before_install:
     # Identificando a distribuicao Linux para fins de LOG
     - cat /etc/*release | head
     # Instalando o Mono
-    - chmod +x ./mono-debian-install.sh > /dev/null
+    - chmod +x ./mono-debian-install.sh
     - ./mono-debian-install.sh
     # Instalando o KVM (K Version Manager)
     #- curl "https://raw.githubusercontent.com/aspnet/Home/master/kvminstall.sh" | sh && source ~/.kre/kvm/kvm.sh
