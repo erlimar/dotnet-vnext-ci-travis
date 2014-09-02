@@ -2,12 +2,12 @@
 
 PREFIX="/usr/local"
 
-sudo apt-get install wget git autoconf libtool automake build-essential gettext
+sudo apt-get install wget git autoconf libtool automake build-essential gettext > /dev/null
 
 PATH=$PREFIX/bin:$PATH
-git clone git://github.com/mono/mono.git --branch mono-3.8.0-branch --depth 1
+git clone git://github.com/mono/mono.git --branch mono-3.8.0-branch --depth 1 > /dev/null
 
-cd mono
+cd mono > /dev/null
 ./autogen.sh --prefix=$PREFIX \
 	--with-mcs-docs=no \
 	--with-xammac=no \
@@ -20,12 +20,6 @@ cd mono
 make get-monolite-latest
 make
 sudo make install
-
-mono --version
-
-#ls $PREFIX/lib
-#ls $PREFIX/lib/mono
-#ls $PREFIX/lib/mono/4.5
 
 MOZROOTS="$PREFIX/lib/mono/4.5/mozroots.exe"
 CERTMGR="$PREFIX/lib/mono/4.5/certmgr.exe"
