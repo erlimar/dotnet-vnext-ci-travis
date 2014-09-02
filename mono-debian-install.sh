@@ -23,9 +23,9 @@ sudo make install
 
 mono --version
 
-ls $PREFIX/lib
-ls $PREFIX/lib/mono
-ls $PREFIX/lib/mono/4.5
+#ls $PREFIX/lib
+#ls $PREFIX/lib/mono
+#ls $PREFIX/lib/mono/4.5
 
 MOZROOTS="$PREFIX/lib/mono/4.5/mozroots.exe"
 CERTMGR="$PREFIX/lib/mono/4.5/certmgr.exe"
