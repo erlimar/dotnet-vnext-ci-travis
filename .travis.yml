@@ -12,7 +12,7 @@ before_install:
     - chmod +x ./kvminstall.sh
     - ./kvminstall.sh
     - chmod +x ~/.kre/kvm/kvm.sh
-    - ~/.kre/kvm/kvm.sh
+    - ~/.kre/kvm/kvm.sh setup
     # Instalando o K Runtime Environment (KRE)
     - kvm install 1.0.0-alpha3
     - kvm use 1.0.0-alpha3
