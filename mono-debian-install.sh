@@ -13,7 +13,7 @@ cd mono
 	--with-xammac=no \
 	--with-monotouch=no \
 	--with-monodroid=no \
-	--with-profile2=no \
+	--with-profile2=yes \
 	--with-profile4=no \
 	--with-profile4_5=yes
 
