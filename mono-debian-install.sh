@@ -14,7 +14,7 @@ cd mono
 	--with-monotouch=no \
 	--with-monodroid=no \
 	--with-profile2=yes \
-	--with-profile4=no \
+	--with-profile4=yes \
 	--with-profile4_5=yes
 
 make get-monolite-latest
