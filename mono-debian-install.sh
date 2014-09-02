@@ -27,3 +27,5 @@ CERTMGR="$PREFIX/lib/mono/4.5/certmgr.exe"
 # Instalando/atualizando os certificados SSL para habilitar as requisicoes HTTPS futuras
 sudo mono  $MOZROOTS --import --machine --sync
 yes | sudo mono $CERTMGR -ssl -m "https://www.myget.org"
+
+cd .. > /dev/null
