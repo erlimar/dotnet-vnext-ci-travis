@@ -7,12 +7,12 @@ before_install:
     - chmod +x ./mono-debian-install.sh
     - ./mono-debian-install.sh
     # Instalando o KVM (K Version Manager)
-    #- curl "https://raw.githubusercontent.com/aspnet/Home/master/kvminstall.sh" | sh && source ~/.kre/kvm/kvm.sh
-    - wget "https://raw.githubusercontent.com/aspnet/Home/master/kvminstall.sh"
-    - chmod +x ./kvminstall.sh
-    - ./kvminstall.sh
-    - chmod +x ~/.kre/kvm/kvm.sh
-    - ~/.kre/kvm/kvm.sh setup
+    - curl "https://raw.githubusercontent.com/aspnet/Home/master/kvminstall.sh" | sh && source ~/.kre/kvm/kvm.sh
+    ##- wget "https://raw.githubusercontent.com/aspnet/Home/master/kvminstall.sh"
+    ##- chmod +x ./kvminstall.sh
+    ##- ./kvminstall.sh
+    ##- chmod +x ~/.kre/kvm/kvm.sh
+    ##- ~/.kre/kvm/kvm.sh setup
     # Instalando o K Runtime Environment (KRE)
     - kvm install 1.0.0-alpha3
     - kvm use 1.0.0-alpha3
