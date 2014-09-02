@@ -21,6 +21,15 @@ make get-monolite-latest
 make
 sudo make install
 
+mono --version
+
+ls $PREFIX/lib
+ls $PREFIX/lib/mono
+ls $PREFIX/lib/mono/4.5
+
+MOZROOTS="$PREFIX/lib/mono/4.5/mozroots.exe"
+CERTMGR="$PREFIX/lib/mono/4.5/certmgr.exe"
+
 # Instalando/atualizando os certificados SSL para habilitar as requisicoes HTTPS futuras
-sudo mozroots --import --machine --sync
-yes | sudo certmgr -ssl -m "https://www.myget.org"
+sudo mono  $MOZROOTS --import --machine --sync
+yes | sudo mono $CERTMGR -ssl -m "https://www.myget.org"
