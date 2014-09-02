@@ -1,10 +1,10 @@
 #!/bin/bash
 
 PREFIX="/usr/local"
-PATH=$PREFIX/bin:$PATH
 
 sudo apt-get install wget git autoconf libtool automake build-essential gettext
 
+PATH=$PREFIX/bin:$PATH
 git clone git://github.com/mono/mono.git --branch mono-3.8.0-branch --depth 1
 
 cd mono
