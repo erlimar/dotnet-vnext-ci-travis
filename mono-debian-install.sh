@@ -25,10 +25,11 @@ echo "Fazendo download do MonoLite..."
 make get-monolite-latest > /dev/null 2>&1
 
 echo "Iniciando compilacao do Mono..."
-make
+travis_wait
+make > /dev/null 2>&1
 
 echo "Instalando o Mono..."
-sudo make install
+sudo make install > /dev/null 2>&1
 
 MOZROOTS="$PREFIX/lib/mono/4.5/mozroots.exe"
 CERTMGR="$PREFIX/lib/mono/4.5/certmgr.exe"
