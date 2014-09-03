@@ -1,24 +1,23 @@
 language: c
 
 before_install:
+    - travis_wait
     # Identificando a distribuicao Linux para fins de LOG
     - cat /etc/*release | head
     # Instalando o Mono
     - source ./mono-debian-install.sh
     # Instalando o KVM (K Version Manager)
-    - wget "https://raw.githubusercontent.com/aspnet/Home/master/kvminstall.sh" > /dev/null
+    - wget "https://raw.githubusercontent.com/aspnet/Home/master/kvminstall.sh" > /dev/null 2>&1
     - source ./kvminstall.sh
     - source ~/.kre/kvm/kvm.sh
-    #
     # Instalando o K Runtime Environment (KRE)
-    - kvm install 1.0.0-alpha3 > /dev/null
-    - kvm use 1.0.0-alpha3 > /dev/null
+    - kvm install 1.0.0-alpha3 > /dev/null 2>&1
+    - kvm use 1.0.0-alpha3 > /dev/null 2>&1
 
 script:
     # Identificando a versao do Mono
     - mono --version
     - cd src/ > /dev/null
-    - kpm restore --source "https://www.myget.org/F/aspnetmaster/api/v2"
+    - kpm restore --source "https://www.myget.org/F/aspnetmaster/api/v2" > /dev/null 2>&1
     - k test
-    - k run
     - kpm build
