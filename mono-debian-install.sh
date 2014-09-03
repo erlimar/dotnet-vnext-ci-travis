@@ -2,12 +2,15 @@
 
 PREFIX="/usr/local"
 
+echo "Instalando ferramentas..."
 sudo apt-get install wget git autoconf libtool automake build-essential gettext > /dev/null 2>&1
 
 PATH=$PREFIX/bin:$PATH
+echo "Fazendo download do codigo no GitHub..."
 git clone git://github.com/mono/mono.git --branch mono-3.8.0-branch --depth 1 > /dev/null 2>&1
 
 cd mono > /dev/null
+echo "Preparando a compilacao..."
 ./autogen.sh --prefix=$PREFIX \
 	--with-mcs-docs=no \
 	--with-xammac=no \
@@ -15,17 +18,27 @@ cd mono > /dev/null
 	--with-monodroid=no \
 	--with-profile2=no \
 	--with-profile4=yes \
-	--with-profile4_5=yes
+	--with-profile4_5=yes \
+	> /dev/null 2>&1
 
-make get-monolite-latest > /dev/null
-make > /dev/null
-sudo make install > /dev/null
+echo "Fazendo download do MonoLite..."
+make get-monolite-latest > /dev/null 2>&1
+
+echo "Iniciando compilacao do Mono..."
+make
+
+echo "Instalando o Mono..."
+sudo make install
 
 MOZROOTS="$PREFIX/lib/mono/4.5/mozroots.exe"
 CERTMGR="$PREFIX/lib/mono/4.5/certmgr.exe"
 
-# Instalando/atualizando os certificados SSL para habilitar as requisicoes HTTPS futuras
-sudo mono  $MOZROOTS --import --machine --sync > /dev/null
-yes | sudo mono $CERTMGR -ssl -m "https://www.myget.org" > /dev/null
+echo "Atualizando certificados SSL..."
+sudo mono  $MOZROOTS --import --machine --sync > /dev/null 2>&1
+yes | sudo mono $CERTMGR -ssl -m "https://www.myget.org" > /dev/null 2>&1
+
+echo ""
+echo "Preparacao do Mono finalizada!"
+echo ""
 
 cd .. > /dev/null
