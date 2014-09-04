@@ -10,6 +10,7 @@ install:
 
 script:
   - cd src/ > /dev/null
+  - echo "ENV.SERVERURL = $SERVERURL"
   - kpm restore --source "https://www.myget.org/F/aspnetmaster/api/v2" > /dev/null 2>&1
   - k test
   - kpm build
