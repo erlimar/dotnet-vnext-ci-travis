@@ -14,3 +14,8 @@ script:
   - k test
   - kpm build
   - k run
+
+deploy:
+  provider: heroku
+  api_key: 0397aa56-fe11-4a31-987e-76aaab25974e
+  app: dotnet-vnext-ci-travis
