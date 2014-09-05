@@ -20,4 +20,4 @@ deploy:
   app: dotnet-vnext-ci-travis
   on:
     repo: erlimar/dotnet-vnext-ci-travis
-  buildpack: http://github.com/BenHall/heroku-buildpack-mono.git
+  buildpack: http://github.com/erlimar/heroku-buildpack-aspnet-vnext.git
