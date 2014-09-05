@@ -19,7 +19,7 @@ sudo apt-get install wget git autoconf libtool automake build-essential gettext
 wget $URL_TARBALL
 
 # Extracting...
-tar -xjvf "$PACKAGE_NAME.tar.bz2"
+tar -xjvf "$PACKAGE_NAME.tar.bz2" > /dev/null 2>&1
 cd $PACKAGE_NAME
 
 # Configuring...
