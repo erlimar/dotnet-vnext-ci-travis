@@ -1,7 +1,7 @@
 language: c
 
 install:
-  - source ./mono-debian-install.sh
+  - source ./mono-tarball-install.sh
   - wget "https://raw.githubusercontent.com/aspnet/Home/master/kvminstall.sh" > /dev/null 2>&1
   - source ./kvminstall.sh
   - source ~/.kre/kvm/kvm.sh
