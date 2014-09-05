@@ -6,23 +6,17 @@ PREFIX="/usr/local"
 MOZROOTS="$PREFIX/lib/mono/4.5/mozroots.exe"
 CERTMGR="$PREFIX/lib/mono/4.5/certmgr.exe"
 
-echo "PACKAGE_NAME=$PACKAGE_NAME"
-echo "URL_TARBALL=$URL_TARBALL"
-echo "PREFIX=$PREFIX"
-echo "MOZROOTS=$MOZROOTS"
-echo "CERTMGR=$CERTMGR"
+echo "Installing [Mono] prerequisites..."
+sudo apt-get install wget git autoconf libtool automake build-essential gettext > /dev/null 2>&1
 
-# Installing prerequisites...
-sudo apt-get install wget git autoconf libtool automake build-essential gettext
+echo "Downloading [Mono] tarball..."
+wget $URL_TARBALL > /dev/null 2>&1
 
-# Downloading...
-wget $URL_TARBALL
-
-# Extracting...
+echo "Extracting [Mono] tarball..."
 tar -xjvf "$PACKAGE_NAME.tar.bz2" > /dev/null 2>&1
 cd $PACKAGE_NAME
 
-# Configuring...
+echo "Configuring [Mono]..."
 ./configure --prefix=$PREFIX \
     --with-mcs-docs=no \
     --with-xammac=no \
@@ -32,13 +26,13 @@ cd $PACKAGE_NAME
     --with-profile4=yes \
     --with-profile4_5=yes
 
-# Compiling...
+echo "Compiling [Mono]..."
 make
 
-# Installing...
-sudo make install
+echo "Installing [Mono]..."
+sudo make install > /dev/null 2>&1
 
-# Updating SSL certificates...
+echo "Updating SSL certificates..."
 sudo mono  $MOZROOTS --import --machine --sync
 yes | sudo mono $CERTMGR -ssl -m "https://www.myget.org"
 

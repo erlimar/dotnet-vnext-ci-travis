@@ -1,22 +1,21 @@
 language: c
-
 install:
-  - source ./mono-tarball-install.sh
-  - wget "https://raw.githubusercontent.com/aspnet/Home/master/kvminstall.sh" > /dev/null 2>&1
-  - source ./kvminstall.sh
-  - source ~/.kre/kvm/kvm.sh
-  - kvm install 1.0.0-alpha3 > /dev/null 2>&1
-  - kvm use 1.0.0-alpha3 > /dev/null 2>&1
-
+- source ./mono-tarball-install.sh
+- wget "https://raw.githubusercontent.com/aspnet/Home/master/kvminstall.sh" > /dev/null 2>&1
+- source ./kvminstall.sh
+- source ~/.kre/kvm/kvm.sh
+- kvm install 1.0.0-alpha3 > /dev/null 2>&1
+- kvm use 1.0.0-alpha3 > /dev/null 2>&1
 script:
-  - cd src/ > /dev/null
-  - echo "ENV.SERVERURL = $SERVERURL"
-  - kpm restore --source "https://www.myget.org/F/aspnetmaster/api/v2" > /dev/null 2>&1
-  - k test
-  - kpm build
-  - k run
-
+- cd src/ > /dev/null
+- echo "ENV.SERVERURL = $SERVERURL"
+- kpm restore --source "https://www.myget.org/F/aspnetmaster/api/v2" > /dev/null 2>&1
+- k test
+- kpm build
+- k run
 deploy:
   provider: heroku
-  api_key: 0397aa56-fe11-4a31-987e-76aaab25974e
   app: dotnet-vnext-ci-travis
+  app_key:
+    secure: VEqIxEAns+YzkhOyqcB1h2ftoE8QyKeJF4QycpDrI2rwX7YU+3acjvlRsMr/oAK70PjOTZLrt5ydArR6r1GbU1dzbhw7GLqGtPGxUFjRrTTeHRs4FieTwYr4Q0Z10M7vd5RIPvLY2/qXuAvtWd3GnLEX1ZtTJcGb9+bYpjv06IM=
+  buildpack: http://github.com/BenHall/heroku-buildpack-mono
