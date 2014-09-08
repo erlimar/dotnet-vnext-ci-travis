@@ -1,0 +1,53 @@
+#!/bin/bash
+
+PREFIX="/usr/local"
+
+echo ""
+echo "* * * * * * * * * * * * * * * * * * Instalando ferramentas * * * * * * * * * * * * * * * * * *"
+echo ""
+sudo apt-get install wget git autoconf libtool automake build-essential gettext
+
+PATH=$PREFIX/bin:$PATH
+echo ""
+echo "* * * * * * * * * * * * * * * * * * Fazendo download do codigo no GitHub * * * * * * * * * * * * * * * * * *"
+echo ""
+git clone git://github.com/mono/mono.git --branch mono-3.8.0-branch --depth 1
+
+cd mono
+echo ""
+echo "* * * * * * * * * * * * * * * * * * Preparando a compilacao * * * * * * * * * * * * * * * * * *"
+echo ""
+./autogen.sh --prefix=$PREFIX \
+	--with-mcs-docs=no \
+	--with-xammac=no \
+	--with-monotouch=no \
+	--with-monodroid=no \
+	--with-profile2=no \
+	--with-profile4=yes \
+	--with-profile4_5=yes
+
+echo ""
+echo "* * * * * * * * * * * * * * * * * * Fazendo download do MonoLite * * * * * * * * * * * * * * * * * *"
+echo ""
+make get-monolite-latest
+
+echo ""
+echo "* * * * * * * * * * * * * * * * * * Iniciando compilacao do Mono * * * * * * * * * * * * * * * * * *"
+echo ""
+make
+
+echo ""
+echo "* * * * * * * * * * * * * * * * * * Instalando o Mono * * * * * * * * * * * * * * * * * *"
+echo ""
+sudo make install
+
+MOZROOTS="$PREFIX/lib/mono/4.5/mozroots.exe"
+CERTMGR="$PREFIX/lib/mono/4.5/certmgr.exe"
+
+echo ""
+echo "* * * * * * * * * * * * * * * * * * Atualizando certificados SSL * * * * * * * * * * * * * * * * * *"
+echo ""
+sudo mono  $MOZROOTS --import --machine --sync
+yes | sudo mono $CERTMGR -ssl -m "https://www.myget.org"
+
+cd ..
