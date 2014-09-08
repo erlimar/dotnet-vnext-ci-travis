@@ -1,11 +1,12 @@
 #!/bin/bash
 
+UDO=
 PREFIX="/usr/local"
 
 echo ""
 echo "* * * * * * * * * * * * * * * * * * Instalando ferramentas * * * * * * * * * * * * * * * * * *"
 echo ""
-sudo apt-get install wget git autoconf libtool automake build-essential gettext
+$UDO apt-get install wget git autoconf libtool automake build-essential gettext
 
 PATH=$PREFIX/bin:$PATH
 echo ""
@@ -39,7 +40,7 @@ make
 echo ""
 echo "* * * * * * * * * * * * * * * * * * Instalando o Mono * * * * * * * * * * * * * * * * * *"
 echo ""
-sudo make install
+$UDO make install
 
 MOZROOTS="$PREFIX/lib/mono/4.5/mozroots.exe"
 CERTMGR="$PREFIX/lib/mono/4.5/certmgr.exe"
@@ -47,7 +48,7 @@ CERTMGR="$PREFIX/lib/mono/4.5/certmgr.exe"
 echo ""
 echo "* * * * * * * * * * * * * * * * * * Atualizando certificados SSL * * * * * * * * * * * * * * * * * *"
 echo ""
-sudo mono  $MOZROOTS --import --machine --sync
-yes | sudo mono $CERTMGR -ssl -m "https://www.myget.org"
+$UDO mono  $MOZROOTS --import --machine --sync
+yes | $UDO mono $CERTMGR -ssl -m "https://www.myget.org"
 
 cd ..
