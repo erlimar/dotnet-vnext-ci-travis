@@ -6,6 +6,9 @@ cache_dir=$2
 
 echo "Build running..."
 
+# Identificando a distribuicao Linux para fins de LOG
+cat /etc/*release | head
+
 echo "build_dir=$build_dir"
 ls -R $build_dir
 
