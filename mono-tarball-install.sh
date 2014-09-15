@@ -5,6 +5,7 @@ PACKAGE_NAME="mono-3.8.0"
 URL_TARBALL="http://download.mono-project.com/sources/mono/$PACKAGE_NAME.tar.bz2"
 #PREFIX="/usr/local"
 PREFIX="$PWD/$PACKAGE_NAME-bin"
+MONOEXEC=$PREFIX/bin/mono
 MOZROOTS="$PREFIX/lib/mono/4.5/mozroots.exe"
 CERTMGR="$PREFIX/lib/mono/4.5/certmgr.exe"
 
@@ -46,8 +47,11 @@ echo "PATH=$PATH"
 export PATH=$PATH:$PREFIX/bin
 echo "PATH=$PATH"
 
+mono --version
+$MONOEXEC --version
+
 echo "Updating SSL certificates..."
-sudo mono  $MOZROOTS --import --machine --sync
-yes | sudo mono $CERTMGR -ssl -m "https://www.myget.org"
+sudo $MONOEXEC  $MOZROOTS --import --machine --sync
+yes | sudo $MONOEXEC $CERTMGR -ssl -m "https://www.myget.org"
 
 cd ..

@@ -10,6 +10,7 @@ install:
     - kvm use 1.0.0-alpha3 > /dev/null 2>&1
 script:
     #- echo "Script..."
+    - mono --version
     - cd src/ > /dev/null
     - kpm restore --source "https://www.myget.org/F/aspnetmaster/api/v2" > /dev/null
     - k test
