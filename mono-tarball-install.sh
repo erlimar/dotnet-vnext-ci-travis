@@ -12,7 +12,7 @@ echo "PWD=$PWD"
 echo "PREFIX=$PREFIX"
 #echo "PREFIX2=$PREFIX2"
 
-mkdir -R $PREFIX
+mkdir -p $PREFIX
 
 echo "Installing [Mono] prerequisites..."
 sudo apt-get install wget git autoconf libtool automake build-essential gettext > /dev/null 2>&1
@@ -39,6 +39,12 @@ make
 
 echo "Installing [Mono]..."
 sudo make install > /dev/null 2>&1
+
+ls -R $PREFIX
+
+echo "PATH=$PATH"
+export PATH=$PATH:$PREFIX/bin
+echo "PATH=$PATH"
 
 echo "Updating SSL certificates..."
 sudo mono  $MOZROOTS --import --machine --sync
