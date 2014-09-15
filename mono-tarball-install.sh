@@ -1,10 +1,16 @@
 #!/bin/sh
 
+PWD=`pwd`
 PACKAGE_NAME="mono-3.8.0"
 URL_TARBALL="http://download.mono-project.com/sources/mono/$PACKAGE_NAME.tar.bz2"
 PREFIX="/usr/local"
+PREFIX2="$PWD/$PACKAGE_NAME-bin"
 MOZROOTS="$PREFIX/lib/mono/4.5/mozroots.exe"
 CERTMGR="$PREFIX/lib/mono/4.5/certmgr.exe"
+
+echo "PWD=$PWD"
+echo "PREFIX=$PREFIX"
+echo "PREFIX2=$PREFIX2"
 
 echo "Installing [Mono] prerequisites..."
 sudo apt-get install wget git autoconf libtool automake build-essential gettext > /dev/null 2>&1

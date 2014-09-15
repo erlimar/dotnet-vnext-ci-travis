@@ -1,19 +1,19 @@
 language: c
 install:
-    - echo "Install..."
-    #- source ./mono-tarball-install.sh
-    #- wget "https://raw.githubusercontent.com/aspnet/Home/master/kvminstall.sh" > /dev/null
-    #- source ./kvminstall.sh
-    #- source ~/.kre/kvm/kvm.sh
-    #- kvm install 1.0.0-alpha3 > /dev/null 2>&1
-    #- kvm use 1.0.0-alpha3 > /dev/null 2>&1
+    #- echo "Install..."
+    - source ./mono-tarball-install.sh
+    - wget "https://raw.githubusercontent.com/aspnet/Home/master/kvminstall.sh" > /dev/null
+    - source ./kvminstall.sh
+    - source ~/.kre/kvm/kvm.sh
+    - kvm install 1.0.0-alpha3 > /dev/null 2>&1
+    - kvm use 1.0.0-alpha3 > /dev/null 2>&1
 script:
-    - echo "Script..."
-    #- cd src/ > /dev/null
-    #- kpm restore --source "https://www.myget.org/F/aspnetmaster/api/v2" > /dev/null
-    #- k test
-    #- kpm build
-    #- k run
+    #- echo "Script..."
+    - cd src/ > /dev/null
+    - kpm restore --source "https://www.myget.org/F/aspnetmaster/api/v2" > /dev/null
+    - k test
+    - kpm build
+    - k run
 deploy:
   provider: heroku
   api_key:
