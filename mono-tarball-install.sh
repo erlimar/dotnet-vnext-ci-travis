@@ -3,15 +3,10 @@
 PWD=`pwd`
 PACKAGE_NAME="mono-3.8.0"
 URL_TARBALL="http://download.mono-project.com/sources/mono/$PACKAGE_NAME.tar.bz2"
-#PREFIX="/usr/local"
 PREFIX="$PWD/$PACKAGE_NAME-bin"
 MONOEXEC=$PREFIX/bin/mono
 MOZROOTS="$PREFIX/lib/mono/4.5/mozroots.exe"
 CERTMGR="$PREFIX/lib/mono/4.5/certmgr.exe"
-
-echo "PWD=$PWD"
-echo "PREFIX=$PREFIX"
-#echo "PREFIX2=$PREFIX2"
 
 mkdir -p $PREFIX
 
@@ -39,19 +34,16 @@ echo "Compiling [Mono]..."
 make
 
 echo "Installing [Mono]..."
-sudo make install > /dev/null 2>&1
+make install
 
-ls -R $PREFIX
-
-echo "PATH=$PATH"
 export PATH=$PATH:$PREFIX/bin
-echo "PATH=$PATH"
 
 mono --version
-$MONOEXEC --version
+#$MONOEXEC --version
 
 echo "Updating SSL certificates..."
-sudo $MONOEXEC  $MOZROOTS --import --machine --sync
-yes | sudo $MONOEXEC $CERTMGR -ssl -m "https://www.myget.org"
-
+mono $MOZROOTS --import --sync
+#sudo $MONOEXEC  $MOZROOTS --import --machine --sync
+yes | mono $CERTMGR -ssl "https://www.myget.org"
+#yes | sudo $MONOEXEC $CERTMGR -ssl -m "https://www.myget.org"
 cd ..
