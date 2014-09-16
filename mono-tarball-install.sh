@@ -38,6 +38,11 @@ make install
 
 export PATH=$PATH:$PREFIX/bin
 
+echo "Compressing [Mono] binary..."
+tar -cjvf "$PACKAGE_NAME-bin.tar.bz2" "$PREFIX/*"
+tar -tjvf "$PACKAGE_NAME-bin.tar.bz2"
+tar -tvf "$PACKAGE_NAME-bin.tar.bz2"
+
 mono --version
 #$MONOEXEC --version
 
