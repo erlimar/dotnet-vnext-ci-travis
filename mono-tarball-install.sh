@@ -39,11 +39,16 @@ make install
 export PATH=$PATH:$PREFIX/bin
 
 echo "Compressing [Mono] binary..."
-tar -cjvf "$PACKAGE_NAME-bin.tar.bz2" "$PREFIX/*"
+
+echo "tar -zcvf $PACKAGE_NAME-bin.tar.gz $PREFIX"
+tar -zcvf "$PACKAGE_NAME-bin.tar.gz" "$PREFIX"
+
+echo "tar -tjvf $PACKAGE_NAME-bin.tar.bz2"
 tar -tjvf "$PACKAGE_NAME-bin.tar.bz2"
+
+echo "tar -tvf $PACKAGE_NAME-bin.tar.bz2"
 tar -tvf "$PACKAGE_NAME-bin.tar.bz2"
 
-mono --version
 #$MONOEXEC --version
 
 echo "Updating SSL certificates..."
