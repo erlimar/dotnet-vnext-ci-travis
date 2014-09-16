@@ -1,2 +1,6 @@
 *~
 *.swp
+bin/
+kvminstall.sh
+mono*/
+mono*.tar.*
